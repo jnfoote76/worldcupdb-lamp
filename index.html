@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>World Cup DB</title>
+		<style type="text/css">
+   			.content {
+        		display: none;
+        		margin-left: 75px;
+				margin-bottom: 10px;
+   			}
+		</style>
+	</head>
+
+<body>
+	<h2>Mondial DB: A World Cup Database</h2>
+	<br />
+	<form action="query.php" method="get">Choose a query which you would like to run:
+		<br />
+		<br />
+		<div id="specificCup"><input type="radio" name="query" value="specificCup" onchange="showQueryInput()">Specific Cup Query</input></div>
+		<div class="content" id="specificCupContent">
+			<br />
+			Enter a valid World Cup year (eg. 1998):
+  			<input type="text" name="SCQ-year"> <br>
+  			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="specificPlayer"><input type="radio" name="query" value="specificPlayer" onchange="showQueryInput()">Specific Player Query</input></div>
+		<div class="content" id="specificPlayerContent">
+			<br />
+			Enter a player's name (eg. Cristiano Ronaldo):
+  			<input type="text" name="SPQ-player"> <br>
+  			<input type="submit" value="Run">
+  		</div>
+		<br />
+
+		<div id="superstars"><input type="radio" name="query" value="superstars" onchange="showQueryInput()">Superstars Query</input></div>
+		<div class="content" id="superstarsContent">
+			<br />
+			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="teamHistorical"><input type="radio" name="query" value="teamHistorical" onchange="showQueryInput()">Team Historical Query</input></div>
+		<div class="content" id="teamHistoricalContent">
+			<br />
+			Enter a country's name (eg. France):
+  			<input type="text" name="THQ-country"> <br>
+  			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="countryPlayers"><input type="radio" name="query" value="countryPlayers" onchange="showQueryInput()">Country's Players Query</input></div>
+		<div class="content" id="countryPlayersContent">
+			<br />
+			Enter a country's name (eg. France):
+  			<input type="text" name="THQ-country"> <br>
+  			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="crestImage"><input type="radio" name="query" value="crestImage" onchange="showQueryInput()">Crest Image Query</input></div>
+		<div class="content" id="crestImageContent">
+			<br />
+			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="goalsAtStadiums"><input type="radio" name="query" value="goalsAtStadiums" onchange="showQueryInput()">Goals at Stadiums Query</input></div>
+		<div class="content" id="goalsAtStadiumsContent">
+			<br />
+			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="mostWins"><input type="radio" name="query" value="mostWins" onchange="showQueryInput()">Most Wins Query</input></div>
+		<div class="content" id="mostWinsContent">
+			<br />
+			<input type="submit" value="Run">
+		</div>
+		<br />
+
+		<div id="countryRivalry"><input type="radio" name="query" value="countryRivalry" onchange="showQueryInput()">Country Rivalry Query</input></div>
+		<div class="content" id="countryRivalryContent">
+			<br />
+			Enter two countries' names (eg. France and Germany): <br>
+  			Country 1: <input type="text" name="CRQ-country1"> <br>
+  			Country 2: <input type="text" name="CRQ-country2"> <br>
+  			<input type="submit" value="Run">
+		</div>
+	</form>
+</body>
+
+<script>
+	currSelected = null;
+
+	function showQueryInput() {
+		if (currSelected !== null) {
+			currSelected.style.display = 'none';
+		}
+		var value = document.querySelector('input[name="query"]:checked').value;
+		var contentID = value + "Content";
+		var contentElement = document.getElementById(contentID);
+		contentElement.style.display = 'block';
+		currSelected = contentElement;
+	}
+</script>
+
+</html>
+

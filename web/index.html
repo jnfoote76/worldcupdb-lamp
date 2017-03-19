@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>World Cup DB</title>
+		<link rel="stylesheet" href="index.css" type="text/css" />
+	</head>
+
+	<body>
+		<h1>Mondial DB: A World Cup Database</h1>
+		<br />
+		<form class="body2" action="query.php" method="get">Choose a query which you would like to run:
+			<br />
+			<br />
+			<input class="radio" type="radio" name="queryType" value="specificCup" onchange="showQueryInput()">Specific Cup Query</input>
+			<div class="content" id="specificCupContent">
+				<br />
+				<div class="inputField">
+					Enter a valid World Cup year (eg. 1998):
+  					<input type="text" name="SCQ-year">
+  				</div>
+  				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="specificPlayer" onchange="showQueryInput()">Specific Player Query</input>
+			<div class="content" id="specificPlayerContent">
+				<br />
+				<div class="inputField">
+					Enter a player's name (eg. Cristiano Ronaldo):
+  					<input type="text" name="SPQ-player">
+  				</div>
+  				<input class="submit" type="submit" value="Run">
+  			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="superstars" onchange="showQueryInput()">Superstars Query</input>
+			<div class="content" id="superstarsContent">
+				<br />
+				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="teamHistorical" onchange="showQueryInput()">Team Historical Query</input>
+			<div class="content" id="teamHistoricalContent">
+				<br />
+				<div class="inputField">
+					Enter a country's name (eg. France):
+  					<input type="text" name="THQ-country">
+  				</div>
+  				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="countrysPlayers" onchange="showQueryInput()">Country's Players Query</input>
+			<div class="content" id="countrysPlayersContent">
+				<br />
+				<div class="inputField">
+					Enter a country's name (eg. France):
+  					<input type="text" name="CPQ-country">
+  				</div>
+  				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="crestImage" onchange="showQueryInput()">Crest Image Query</input>
+			<div class="content" id="crestImageContent">
+				<br />
+				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="goalsAtStadiums" onchange="showQueryInput()">Goals at Stadiums Query</input>
+			<div class="content" id="goalsAtStadiumsContent">
+				<br />
+				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="mostWins" onchange="showQueryInput()">Most Wins Query</input>
+			<div class="content" id="mostWinsContent">
+				<br />
+				<input class="submit" type="submit" value="Run">
+			</div>
+			<br />
+			<br />
+
+			<input class="radio" type="radio" name="queryType" value="countryRivalry" onchange="showQueryInput()">Country Rivalry Query</input>
+			<div class="content" id="countryRivalryContent">
+				<br />
+				Enter two countries' names (eg. France and Germany):
+				<div class="inputField">
+  					Country 1: <input type="text" name="CRQ-country1">
+  				</div>
+  				<div class="input">
+  					Country 2: <input type="text" name="CRQ-country2">
+  				</div>
+  				<input class="submit" type="submit" value="Run">
+			</div>
+		</form>
+	</body>
+
+	<script src="index.js"></script>
+
+</html>
+

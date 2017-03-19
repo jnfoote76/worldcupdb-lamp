@@ -1,0 +1,56 @@
+.body2 {
+	margin-top: 0px;
+	margin-left: 130px;
+	padding-bottom:10px;
+	padding-left: 10px;
+	border-left: 2px solid #326295;
+}
+
+.inputField {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+p {
+	margin-left: 20px;
+}
+
+label {
+	float: left;
+	width: 200px;
+	margin-left: 70px;
+	padding-right: 15px;
+	clear: left;
+	margin-bottom: 10px;
+}
+
+button {
+	margin-bottom: 0px;
+}
+
+.content {
+	display: none;
+	margin-left: 50px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.submit {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+		
+h1 {
+	background-color:#326295;
+	color:white;
+	border-style:outset;
+	border-color:#fc0;
+	margin-top:-7.75px;
+	margin-left:-7.75px;
+	margin-right:-7.75px;
+	padding:10px;
+	text-align:center;
+	font-family:"Arial Black";
+}

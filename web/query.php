@@ -8,50 +8,50 @@
 	
 	$db_connection = new mysqli($host, $user, $password, $database);
 	
-    if ($db_connection->connect_error) {
-        die($db_connection->connect_error);
-    }
+  if ($db_connection->connect_error) {
+    die($db_connection->connect_error);
+  }
   	
-  	if(isset($_GET['queryType'])) {
-  		$queryType = $_GET['queryType'];
-  		if ($queryType === "specificCup") {
-  			if (isset($_GET['SCQ-year'])) {
-  				$year = $_GET['SCQ-year'];
-  				$table = specificCupQuery($db_connection, $year);
-  			}
-  		} elseif ($queryType === "specificPlayer") {
-  			if(isset($_GET['SPQ-player'])) {
-  				$player = $_GET['SPQ-player'];
-          $table = specificPlayerQuery($db_connection, $player);
-  			}
-  		} elseif ($queryType === "superstars") {
-        $table = superstarsQuery($db_connection);
-  		} elseif ($queryType === "teamHistorical") {
-        if(isset($_GET['THQ-country'])) {
-          $country = $_GET['THQ-country'];
-          $table = teamHistoricalQuery($db_connection, $country);
-        }
-      } elseif ($queryType === "countrysPlayers") {
-        if(isset($_GET['CPQ-country'])) {
-          $country = $_GET['CPQ-country'];
-          $table = countrysPlayersQuery($db_connection, $country);
-        }
-      } elseif ($queryType === "crestImage") {
-        $table = crestImageQuery($db_connection);
-      } elseif ($queryType === "goalsAtStadiums") {
-        $table = goalsAtStadiumQuery($db_connection);
-      } elseif ($queryType === "mostWins") {
-        $table = mostWinsQuery($db_connection);
-      } elseif ($queryType === "countryRivalry") {
-        if (isset($_GET['CRQ-country1']) && isset($_GET['CRQ-country2'])) {
-          $countryA = $_GET['CRQ-country1'];
-          $countryB = $_GET['CRQ-country2'];
-          $table = countryRivalryQuery($db_connection, $countryA, $countryB);
-        }
+  if(isset($_GET['queryType'])) {
+  	$queryType = $_GET['queryType'];
+  	if ($queryType === "specificCup") {
+  		if (isset($_GET['SCQ-year'])) {
+  			$year = $_GET['SCQ-year'];
+  			$table = specificCupQuery($db_connection, $year);
+  		}
+  	} elseif ($queryType === "specificPlayer") {
+      if(isset($_GET['SPQ-player'])) {
+        $player = $_GET['SPQ-player'];
+        $table = specificPlayerQuery($db_connection, $player);
+			}
+		} elseif ($queryType === "superstars") {
+      $table = superstarsQuery($db_connection);
+		} elseif ($queryType === "teamHistorical") {
+      if(isset($_GET['THQ-country'])) {
+        $country = $_GET['THQ-country'];
+        $table = teamHistoricalQuery($db_connection, $country);
       }
-  	}
+    } elseif ($queryType === "countrysPlayers") {
+      if(isset($_GET['CPQ-country'])) {
+        $country = $_GET['CPQ-country'];
+        $table = countrysPlayersQuery($db_connection, $country);
+      } 
+    } elseif ($queryType === "crestImage") {
+      $table = crestImageQuery($db_connection);
+    } elseif ($queryType === "goalsAtStadiums") {
+      $table = goalsAtStadiumQuery($db_connection);
+    } elseif ($queryType === "mostWins") {
+      $table = mostWinsQuery($db_connection);
+    } elseif ($queryType === "countryRivalry") {
+      if (isset($_GET['CRQ-country1']) && isset($_GET['CRQ-country2'])) {
+        $countryA = $_GET['CRQ-country1'];
+        $countryB = $_GET['CRQ-country2'];
+        $table = countryRivalryQuery($db_connection, $countryA, $countryB);
+      }
+    }
+  }
 
-  	$db_connection->close();
+  $db_connection->close();
 
 	$page = generatePage($table, "World Cup DB");
 	echo $page;
@@ -395,5 +395,5 @@
 EOPAGE;
 
     return $page;
-}
+  }
 ?>

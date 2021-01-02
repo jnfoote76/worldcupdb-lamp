@@ -1,10 +1,10 @@
-drop table country;
-drop table player;
-drop table cup;
-drop table stadium;
-drop table rosterspot;
-drop table countryparticipation;
-drop table game;
+drop table if exists country;
+drop table if exists player;
+drop table if exists cup;
+drop table if exists stadium;
+drop table if exists rosterspot;
+drop table if exists countryparticipation;
+drop table if exists game;
 create table country(id int not null, name varchar(64), crestURL varchar(512), primary key (id));
 create table player(id int not null, name varchar(64), birthdate varchar(64), primary key (id));
 create table cup(year int not null, hostCID int, winnerCID int, primary key (year));

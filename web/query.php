@@ -1,5 +1,5 @@
 <?php
-	$host = "localhost";
+	$host = getenv("DB_HOST");
 	$user = getenv("DB_USER");
 	$password = getenv("DB_PASS");
 	$database = "worldcupdb";
@@ -206,13 +206,8 @@
 				"on game.loserCID = country.id " .
 				"group by country.id) as countrylosegoals " .
 				"on countrylosegoals.id = country.id " .
-				"left join " .
-				"(select cid, sum(points) as totalpoints " .
-				"from countrygrouppoints " .
-				"group by countrygrouppoints.cid) as countrynumpoints " .
-				"on countrynumpoints.cid = country.id " .
 				"where country.name = ? " .
-				"group by country.id " .
+				"group by country.id, country.name, countrynumcups.numcups, countrynumwins.totalwins, countrynumties.totalties, countrynumlosses.totallosses " .
 				"order by country.id;";
 
 		$stmt = $db_connection->prepare($query);

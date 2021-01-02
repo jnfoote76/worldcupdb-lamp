@@ -163,12 +163,11 @@
 				 "</tr>";
 
 		$query = "select country.name, countrynumcups.numcups, " . 
-						"countrynumwins.totalwins, " .
-						"countrynumties.totalties, " . 
-						"countrynumlosses.totallosses, " . 
-						"coalesce((countrywingoals.totWGoals + countrylosegoals.totLGoals), " . 
-							  	"countrywingoals.totWGoals, countrylosegoals.totLGoals) as totalgoals, " . 
-						"(3*totalwins + totalties) as totalpoints " .
+						"coalesce(countrynumwins.totalwins, 0) as totalwins, " .
+						"coalesce(countrynumties.totalties, 0) as totalties, " . 
+						"coalesce(countrynumlosses.totallosses, 0) as totallosses, " . 
+						"(3*coalesce(totalwins, 0) + coalesce(totalties, 0)) as totalpoints, " .
+						"(coalesce(countrywingoals.totWGoals, 0) + coalesce(countrylosegoals.totLGoals, 0)) as totalgoals " . 
 				"from country " . 
 				"left join " .
 				"(select cid, count(*) as numcups " .

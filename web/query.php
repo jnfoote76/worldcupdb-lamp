@@ -333,28 +333,26 @@
 		$table = "<tr><th>Year</th><th>Round</th><th>Stadium</th>" .
 			"<th>Winner</th><th>Score</th><th>Loser</th>" .
 			"<th>PK Score</th></tr>";
-		$query = "select game3.year, game3.round, game3.sname, " .
-				"game3.winner, country.name as loser, game3.score, game3.pkScore " .
-				"from " .
-			  	"(select game2.year, game2.round, game2.sname, country.name as winner, " . 
-			  	"game2.loserCID, game2.score, game2.pkScore " .
-			  	"from " .
-					"(select game.year, game.round, stadium.name as sname, game.winnerCID, " .
-					"game.loserCID, concat(concat(game.wGoals,'-'),game.lGoals) as score, game.pkScore " .
-					"from game " .
-					"left join stadium " .
-					"on stadium.id = game.stadID) as game2 " .
-			  	"left join country on country.id = game2.winnerCID) as game3 " .
-				"left join country " .
-				"on country.id = game3.loserCID " .
-				"where (game3.winner like ? and country.name like ?) or " .
-				  	"(game3.winner like ? and country.name like ?)" .
-				"order by game3.year;";
+		$query = "select game.year, game.round, stadium.name as sname, " .
+				"winningCountry.name as winner, concat(concat(game.wGoals,'-'),game.lGoals) as score, " .
+				"losingCountry.name as loser, game.pkScore " .
+				"from game " .
+				"left join stadium on stadium.id = game.stadID " .
+				"left join ( " .
+					"select id, name " .
+					"from country " .
+				") as winningCountry on winningCountry.id = game.winnerCID " .
+				"left join ( " .
+					"select id, name " .
+					"from country " .
+				") as losingCountry on losingCountry.id = game.loserCID " .
+				"where (winningCountry.name = ? and losingCountry.name = ?) or (winningCountry.name = ? and losingCountry.name = ?) " .
+				"order by game.year, game.id;";
 		$stmt = $db_connection->prepare($query);
-		$stmt->bind_param("ssss", $countyA, $countryB, $countryB, $countryA);
+		$stmt->bind_param("ssss", $countryA, $countryB, $countryB, $countryA);
 		$stmt->execute();
 		$stmt->bind_result($result_year, $result_round, $result_stadium, 
-					  	   $result_winner, $result_loser, $result_score,
+					  	   $result_winner, $result_score, $result_loser,
 					  	   $result_pkScore); 
 
 		while($stmt->fetch()) {

@@ -97,11 +97,12 @@
 				 "join country " . 
 				 "on rosterspot.cid = country.id " .
 				 "join " .
-				 "(select year, date, min(id) " .
+				 "(select year, date " .
 				 "from game " .
-				 "group by year) as firstGame " .
+				 "where id = 1) as firstGame " .
 				 "on rosterspot.year = firstGame.year " .
-				 "where player.name = ?;";
+				 "where player.name = ? " .
+				 "group by player.name, country.name, rosterspot.year, rosterspot.position, firstGame.year, firstGame.date, player.birthdate, rosterspot.goals;";
 
 		$stmt = $db_connection->prepare($query);
 		$stmt->bind_param("s", $player);
